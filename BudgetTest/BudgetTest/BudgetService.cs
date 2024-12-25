@@ -44,11 +44,12 @@ public class BudgetService
                 continue;
             }
 
-            if (budget.FirstDay() >= start && budget.LastDay() <= end)
-            {
-                totalBudget += budget.Amount;
-            }
-            else if (budget.YearMonth == start.ToString("yyyyMM"))
+            // if (budget.FirstDay() >= start && budget.LastDay() <= end)
+            // {
+            //     totalBudget += budget.Amount;
+            // }
+            // else 
+            if (budget.YearMonth == start.ToString("yyyyMM"))
             {
                 var overlappingDays = (budget.LastDay() - start).Days + 1;
                 totalBudget += budget.DailyAmount() * overlappingDays;
@@ -57,6 +58,10 @@ public class BudgetService
             {
                 var overlappingDays = end.Day;
                 totalBudget += budget.DailyAmount() * overlappingDays;
+            }
+            else
+            {
+                totalBudget += budget.Amount;
             }
         }
 
