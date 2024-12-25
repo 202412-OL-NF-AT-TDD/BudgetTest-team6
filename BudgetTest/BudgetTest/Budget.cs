@@ -20,4 +20,9 @@ public class Budget
     {
         return FirstDay().AddMonths(1).AddDays(-1);
     }
+
+    public int Days()
+    {
+        return LastDay().Day;
+    }
 }

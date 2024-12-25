@@ -39,17 +39,15 @@ public class BudgetService
         var totalBudget = 0m;
         foreach (var budget in budgets)
         {
-            // var startBegin = new DateTime(start.Year, start.Month, 1);
-
             if (budget.FirstDay() >= start && budget.LastDay() <= end)
             {
                 totalBudget += budget.Amount;
             }
             else if (budget.YearMonth == start.ToString("yyyyMM"))
-                // else if (budget.FirstDay() == startBegin)
             {
                 var daysSpan = (budget.LastDay() - start).Days + 1;
-                var daysInMonth = DateTime.DaysInMonth(start.Year, start.Month);
+                var daysInMonth = budget.Days();
+                // var daysInMonth = DateTime.DaysInMonth(start.Year, start.Month);
                 var result = budget.Amount / daysInMonth * daysSpan;
                 totalBudget += result;
             }
