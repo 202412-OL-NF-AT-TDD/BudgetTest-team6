@@ -37,15 +37,11 @@ public class BudgetService
         }
 
         var totalBudget = 0m;
+        var period = new Period(start, end);
         foreach (var budget in budgets)
         {
-            // if (end < budget.FirstDay() || start > budget.LastDay())
-            // {
-            //     continue;
-            // }
-
             var overlappingDays =
-                new Period(start, end).OverlappingDays(new Period(budget.FirstDay(), budget.LastDay()));
+                period.OverlappingDays(new Period(budget.FirstDay(), budget.LastDay()));
 
             totalBudget += budget.DailyAmount() * overlappingDays;
         }
