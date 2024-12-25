@@ -10,4 +10,9 @@ public class Budget
         YearMonth = yearMonth;
         Amount = amount;
     }
+
+    public DateTime FirstDay()
+    {
+        return DateTime.ParseExact(YearMonth, "yyyyMM", null);
+    }
 }
