@@ -52,12 +52,13 @@ public class BudgetService
             else if (budget.YearMonth == end.ToString("yyyyMM"))
             {
                 var overlappingDays = (end - budget.FirstDay()).Days + 1;
-                // var overlappingDays = end.Day;
                 totalBudget += budget.DailyAmount() * overlappingDays;
             }
             else
             {
-                totalBudget += budget.Amount;
+                var overlappingDays = (budget.LastDay() - budget.FirstDay()).Days + 1;
+                totalBudget += budget.DailyAmount() * overlappingDays;
+                // totalBudget += budget.Amount;
             }
         }
 
