@@ -2,46 +2,42 @@ namespace BudgetTest;
 
 public class Budget
 {
-    public string YearMonth { get; }
-    public int Amount { get; }
-
     public Budget(string yearMonth, int amount)
     {
         YearMonth = yearMonth;
         Amount = amount;
     }
 
-    public DateTime FirstDay()
+    private int Amount { get; }
+    private string YearMonth { get; }
+
+    public decimal OverlappingAmount(Period period)
     {
-        return DateTime.ParseExact(YearMonth, "yyyyMM", null);
+        return (decimal)DailyAmount() * period.OverlappingDays(CreatePeriod());
     }
 
-    public DateTime LastDay()
-    {
-        return FirstDay().AddMonths(1).AddDays(-1);
-    }
-
-    public int Days()
-    {
-        return LastDay().Day;
-    }
-
-    public int DailyAmount()
-    {
-        var dailyAmount = Amount / Days();
-        return dailyAmount;
-    }
-
-    public Period CreatePeriod()
+    private Period CreatePeriod()
     {
         return new Period(FirstDay(), LastDay());
     }
 
-    public decimal OverlappingAmount(Period period)
+    private int DailyAmount()
     {
-        var overlappingDays =
-            period.OverlappingDays(CreatePeriod());
+        return Amount / Days();
+    }
 
-        return (decimal)DailyAmount() * overlappingDays;
+    private int Days()
+    {
+        return LastDay().Day;
+    }
+
+    private DateTime FirstDay()
+    {
+        return DateTime.ParseExact(YearMonth, "yyyyMM", null);
+    }
+
+    private DateTime LastDay()
+    {
+        return FirstDay().AddMonths(1).AddDays(-1);
     }
 }
