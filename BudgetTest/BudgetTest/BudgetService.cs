@@ -39,6 +39,11 @@ public class BudgetService
         var totalBudget = 0m;
         foreach (var budget in budgets)
         {
+            if (end < budget.FirstDay() || start > budget.LastDay())
+            {
+                continue;
+            }
+
             if (budget.FirstDay() >= start && budget.LastDay() <= end)
             {
                 totalBudget += budget.Amount;
