@@ -46,9 +46,7 @@ public class BudgetService
             else if (budget.YearMonth == start.ToString("yyyyMM"))
             {
                 var daysSpan = (budget.LastDay() - start).Days + 1;
-                var daysInMonth = budget.Days();
-                // var daysInMonth = DateTime.DaysInMonth(start.Year, start.Month);
-                var result = budget.Amount / daysInMonth * daysSpan;
+                var result = budget.Amount / budget.Days() * daysSpan;
                 totalBudget += result;
             }
             else if (budget.YearMonth == end.ToString("yyyyMM"))
