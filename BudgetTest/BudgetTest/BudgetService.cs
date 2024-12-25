@@ -39,7 +39,7 @@ public class BudgetService
         var totalBudget = 0m;
         foreach (var budget in budgets)
         {
-            var budgetEndDay = LastDay(budget);
+            var budgetEndDay = budget.LastDay();
 
             var startBegin = new DateTime(start.Year, start.Month, 1);
 
@@ -64,10 +64,5 @@ public class BudgetService
         }
 
         return totalBudget;
-    }
-
-    private static DateTime LastDay(Budget budget)
-    {
-        return budget.FirstDay().AddMonths(1).AddDays(-1);
     }
 }
