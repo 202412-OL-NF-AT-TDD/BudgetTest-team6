@@ -25,4 +25,10 @@ public class Budget
     {
         return LastDay().Day;
     }
+
+    public int DailyAmount()
+    {
+        var dailyAmount = Amount / Days();
+        return dailyAmount;
+    }
 }
