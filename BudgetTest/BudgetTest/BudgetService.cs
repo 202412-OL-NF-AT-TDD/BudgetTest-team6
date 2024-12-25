@@ -50,11 +50,8 @@ public class BudgetService
             }
             else if (budget.YearMonth == end.ToString("yyyyMM"))
             {
-                var daysSpan = end.Day;
-                // var daysInMonth = DateTime.DaysInMonth(end.Year, end.Month);
-                var result = budget.DailyAmount() * daysSpan;
-                // var result = budget.Amount / daysInMonth * daysSpan;
-                totalBudget += result;
+                var overlappingDays = end.Day;
+                totalBudget += budget.DailyAmount() * overlappingDays;
             }
         }
 
