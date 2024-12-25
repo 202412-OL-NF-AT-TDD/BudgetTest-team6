@@ -45,8 +45,8 @@ public class BudgetService
             }
             else if (budget.YearMonth == start.ToString("yyyyMM"))
             {
-                var daysSpan = (budget.LastDay() - start).Days + 1;
-                totalBudget += budget.DailyAmount() * daysSpan;
+                var overlappingDays = (budget.LastDay() - start).Days + 1;
+                totalBudget += budget.DailyAmount() * overlappingDays;
             }
             else if (budget.YearMonth == end.ToString("yyyyMM"))
             {
